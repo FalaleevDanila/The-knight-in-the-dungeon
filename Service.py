@@ -225,8 +225,8 @@ class EmptyMap(MapFactory):
                     if i == 0 or j == 0 or i == 40 or j == 40:
                         self.Map[j][i] = wall
                     else:
-                        self.Map[j][i] = [wall, floor1, floor2, floor3, floor1,
-                                          floor2, floor3, floor1, floor2][random.randint(0, 8)]
+                        self.Map[j][i] = [floor1, floor2, floor3, floor1,
+                                          floor2, floor3, floor1, floor2][random.randint(0, 7)]
 
         def get_map(self):
             return self.Map
@@ -315,9 +315,11 @@ class SpecialMap(MapFactory):
                 for j in range(41):
                     if i == 0 or j == 0 or i == 40 or j == 40:
                         self.Map[j][i] = wall
+                    elif i%2 == 1 and j%2==1:
+                        self.Map[j][i] = wall
                     else:
-                        self.Map[j][i] = [wall, floor1, floor2, floor3, floor1,
-                                          floor2, floor3, floor1, floor2][random.randint(0, 8)]
+                        self.Map[j][i] = [floor1, floor2, floor3, floor1,
+                                          floor2, floor3, floor1, floor2][random.randint(0, 7)]
 
         def get_map(self):
             return self.Map

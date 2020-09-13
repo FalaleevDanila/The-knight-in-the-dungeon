@@ -35,8 +35,7 @@ class ScreenHandle(pygame.Surface):
         if self.successor is not None:
             self.successor.connect_engine(engine)
 
-    def update(self, value):
-        pass
+
 
 
 class GameSurface(ScreenHandle):

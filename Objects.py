@@ -187,3 +187,7 @@ class Weakness(Effect):
         self.stats["experience"] -= 2
 
 
+class Safety(Effect):
+
+    def apply_effect(self):
+        self.hp = self.max_hp
