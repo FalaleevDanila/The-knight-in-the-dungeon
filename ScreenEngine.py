@@ -178,6 +178,37 @@ class InfoWindow(ScreenHandle):
 
     def draw(self, canvas):
         canvas.blit(self, self.next_coord)
+        self.fill(colors["wooden"])
+        size = self.get_size()
+
+        font = pygame.font.SysFont("comicsansms", 10)
+        for i, text in enumerate(self.data):
+            self.blit(font.render(text, True, colors["black"]),
+                      (5, 20 + 18 * i))
+
+        self.successor.draw(canvas)
+
+    def connect_engine(self, engine):
+        self.game_engine = engine
+        engine.subscribe(self)
+        if self.successor is not None:
+
+            self.successor.connect_engine(engine)
+
+
+class GameMap(ScreenHandle):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.len = 30
+        clear = []
+        self.data = collections.deque(clear, maxlen=self.len)
+
+    def update(self, value):
+        self.data.append(f"> {str(value)}")
+
+    def draw(self, canvas):
+        canvas.blit(self, self.next_coord)
 
         self.fill(colors["wooden"])
         size = self.get_size()
@@ -197,7 +228,6 @@ class InfoWindow(ScreenHandle):
         if self.successor is not None:
 
             self.successor.connect_engine(engine)
-
 
 class HelpWindow(ScreenHandle):
 
